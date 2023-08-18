@@ -8,7 +8,7 @@ import { City } from '../shared/models/city.model';
 export class CitiesService {
   public citiesChanged = new Subject<void>();
 
-  constructor(private httpClient: HttpClient) {}
+  public constructor(private httpClient: HttpClient) {}
 
   public getCity(id: number): Observable<City> {
     return this.httpClient.get<City>(`api/cities/${id}`);
@@ -31,8 +31,8 @@ export class CitiesService {
       );
   }
 
-  public deleteCity(id: number) {
-    return this.httpClient.delete(`api/cities/${id}`)
+  public deleteCity(id: number): Observable<void> {
+    return this.httpClient.delete<void>(`api/cities/${id}`)
       .pipe(
         tap(() => this.citiesChanged.next())
       );

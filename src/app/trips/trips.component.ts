@@ -21,8 +21,7 @@ export class TripsComponent {
     }
   ];
 
-  constructor(private citiesService: CitiesService, private router: Router) {
-  }
+  public constructor(private citiesService: CitiesService, private router: Router) {}
 
   public addCities(cities: City[]): void {
     cities.forEach((city) => {

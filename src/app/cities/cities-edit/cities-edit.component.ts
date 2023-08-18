@@ -12,26 +12,21 @@ import { CitiesService } from '../cities.service';
 export class CitiesEditComponent implements OnInit {
   public name = '';
   public country = '';
-  public cityIndex: number | null = null;
+  public cityIndex: number | undefined;
 
-  constructor(private citiesService: CitiesService, private route: ActivatedRoute, private router: Router) {}
+  public constructor(private citiesService: CitiesService, private route: ActivatedRoute, private router: Router) {}
 
   public ngOnInit(): void {
     this.route.params.subscribe((params: Params) => {
       if (params['id']) {
         this.cityIndex = +params['id'];
         this.setCity(this.cityIndex);
-      } else {
-        this.cityIndex = null;
       }
     });
   }
 
-  public setCity(id: number): void {
-    this.citiesService.getCity(id).subscribe((city) => {
-      this.name = city.name;
-      this.country = city.country;
-    });
+  public isDisabled(): boolean {
+    return !this.name || !this.country;
   }
 
   public addCity(): void {
@@ -53,7 +48,10 @@ export class CitiesEditComponent implements OnInit {
     });
   }
 
-  public isDisabled(): boolean {
-    return !this.name || !this.country;
+  private setCity(id: number): void {
+    this.citiesService.getCity(id).subscribe((city) => {
+      this.name = city.name;
+      this.country = city.country;
+    });
   }
 }

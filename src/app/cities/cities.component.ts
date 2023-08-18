@@ -11,10 +11,10 @@ import { CitiesService } from './cities.service';
   styleUrls: ['./cities.component.scss']
 })
 export class CitiesComponent implements OnInit, OnDestroy {
-  cities: City[] = [];
-  onDestroy = new Subject<void>();
+  public cities: City[] | undefined;
+  private onDestroy = new Subject<void>();
 
-  constructor(private citiesService: CitiesService) {}
+  public constructor(private citiesService: CitiesService) {}
 
   public ngOnInit(): void {
     this.getCities();
@@ -31,7 +31,7 @@ export class CitiesComponent implements OnInit, OnDestroy {
     this.onDestroy.next();
   }
 
-  public getCities(): void {
+  private getCities(): void {
     this.citiesService.getCities().subscribe((cities) => {
       this.cities = cities;
     });

@@ -13,13 +13,25 @@
   </div>
   <div class="col">
     <input type="text" class="form-control" id="country" [(ngModel)]="country">
-    <button type="button" class="btn btn-primary" (click)="addCity()" [disabled]="isDisabled()" *ngIf="cityIndex === null">
+    <button type="button"
+            class="btn btn-primary"
+            (click)="addCity()"
+            [disabled]="isDisabled()"
+            *ngIf="!cityIndex">
       Add City
     </button>
-    <button type="button" class="btn btn-primary" (click)="updateCity()" [disabled]="isDisabled()" *ngIf="cityIndex !== null">
+    <button type="button"
+            class="btn btn-primary"
+            (click)="updateCity()"
+            [disabled]="isDisabled()"
+            *ngIf="cityIndex">
       Update City
     </button>
-    <button type="button" class="btn btn-outline-primary" (click)="deleteCity()" [disabled]="isDisabled()" *ngIf="cityIndex !== null">
+    <button type="button"
+            class="btn btn-outline-primary"
+            (click)="deleteCity()"
+            [disabled]="isDisabled()"
+            *ngIf="cityIndex">
       Delete City
     </button>
   </div>

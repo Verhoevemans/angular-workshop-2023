@@ -10,9 +10,9 @@ import { City } from '../../shared/models/city.model';
 })
 export class CitiesListComponent {
   @Input()
-  public cities: City[] = [];
+  public cities: City[] | undefined;
 
-  constructor(private router: Router, private route: ActivatedRoute) {}
+  public constructor(private router: Router, private route: ActivatedRoute) {}
 
   public editCity(index: number) {
     this.router.navigate(['edit', index], { relativeTo: this.route });
