@@ -6,5 +6,6 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'angular-workshop-2023';
+  public title = 'angular-workshop-2023';
+  public page = 0;
 }

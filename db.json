@@ -1,0 +1,24 @@
+{
+  "cities": [
+    {
+      "id": 1,
+      "name": "Munich",
+      "country": "Germany"
+    },
+    {
+      "id": 2,
+      "name": "Strasbourg",
+      "country": "France"
+    },
+    {
+      "name": "Florence",
+      "country": "Italy",
+      "id": 3
+    },
+    {
+      "name": "Vienna",
+      "country": "Austriaaaa",
+      "id": 4
+    }
+  ]
+}

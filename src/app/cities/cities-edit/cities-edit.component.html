@@ -1,0 +1,28 @@
+<h4>{{ cityIndex === null ? 'Add new' : 'Edit' }} cities</h4>
+<div class="row py-2">
+  <div class="col">
+    <label for="name">City name:</label>
+  </div>
+  <div class="col">
+    <input type="text" class="form-control" id="name" [(ngModel)]="name">
+  </div>
+</div>
+<div class="row py-2">
+  <div class="col">
+    <label for="country">City country:</label>
+  </div>
+  <div class="col">
+    <input type="text" class="form-control" id="country" [(ngModel)]="country">
+    <button type="button" class="btn btn-primary" (click)="addCity()" [disabled]="isDisabled()" *ngIf="cityIndex === null">
+      Add City
+    </button>
+    <button type="button" class="btn btn-primary" (click)="updateCity()" [disabled]="isDisabled()" *ngIf="cityIndex !== null">
+      Update City
+    </button>
+    <button type="button" class="btn btn-outline-primary" (click)="deleteCity()" [disabled]="isDisabled()" *ngIf="cityIndex !== null">
+      Delete City
+    </button>
+  </div>
+</div>
+<p>City name: {{ name }}</p>
+<p>City country: {{ country }}</p>
