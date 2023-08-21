@@ -1,6 +1,7 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component } from '@angular/core';
 
 import { City } from '../../shared/models/city.model';
+import { CitiesService } from '../cities.service';
 
 @Component({
   selector: 'app-cities-edit',
@@ -8,14 +9,14 @@ import { City } from '../../shared/models/city.model';
   styleUrls: ['./cities-edit.component.scss']
 })
 export class CitiesEditComponent {
-  @Output()
-  public onAddCity = new EventEmitter<City>();
-
   public name = '';
   public country = '';
 
+  public constructor(private citiesService: CitiesService) {}
+
   public addCity(): void {
-    this.onAddCity.emit(new City(this.name, this.country));
+    const city = new City(this.name, this.country);
+    this.citiesService.addCity(city);
     this.name = '';
     this.country = '';
   }

@@ -4,9 +4,11 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
 import { CitiesComponent } from './cities/cities.component';
+import { CitiesService } from './cities/cities.service';
 import { CitiesEditComponent } from './cities/cities-edit/cities-edit.component';
 import { CitiesListComponent } from './cities/cities-list/cities-list.component';
 import { HeaderComponent } from './shared/header/header.component';
+import { TripsComponent } from './trips/trips.component';
 
 @NgModule({
   declarations: [
@@ -14,13 +16,16 @@ import { HeaderComponent } from './shared/header/header.component';
     HeaderComponent,
     CitiesComponent,
     CitiesListComponent,
-    CitiesEditComponent
+    CitiesEditComponent,
+    TripsComponent
   ],
   imports: [
     BrowserModule,
     FormsModule
   ],
-  providers: [],
+  providers: [
+    CitiesService
+  ],
   bootstrap: [
     AppComponent
   ]

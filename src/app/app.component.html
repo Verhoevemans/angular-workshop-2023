@@ -1,4 +1,7 @@
 <div class="container">
   <app-header></app-header>
-  <app-cities></app-cities>
+  <button type="button" class="btn btn-link" (click)="page = 0">Cities</button>
+  <button type="button" class="btn btn-link" (click)="page = 1">Trips</button>
+  <app-cities *ngIf="page === 0"></app-cities>
+  <app-trips *ngIf="page === 1"></app-trips>
 </div>

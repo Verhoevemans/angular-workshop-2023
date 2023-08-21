@@ -1,0 +1,19 @@
+<h3>City Trips</h3>
+<ul class="list-group">
+  <li class="list-group-item" *ngFor="let trip of trips">
+    <h4>{{ trip.title }}</h4>
+    <div class="row">
+      <div class="col-8">
+        <span *ngFor="let city of trip.cities">
+          {{ city.name }} ({{ city.country }}) >
+        </span>
+        <span>Home</span>
+      </div>
+      <div class="col-4">
+        <button type="button" class="btn btn-link" (click)="addCities(trip.cities)">
+          Add Cities to list
+        </button>
+      </div>
+    </div>
+  </li>
+</ul>
