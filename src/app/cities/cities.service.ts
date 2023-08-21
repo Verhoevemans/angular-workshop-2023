@@ -1,23 +1,22 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Subject } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 
 import { City } from '../shared/models/city.model';
 
 @Injectable()
 export class CitiesService {
-  public citiesChanged = new Subject<City[]>();
+  public citiesChanged = new Subject<void>();
 
-  private cities: City[] = [
-      new City('Barcelona', 'Spain'),
-      new City('Venice', 'Italy')
-  ];
+  public constructor(private httpClient: HttpClient) {}
 
   public addCity(city: City): void {
-    this.cities.push(city);
-    this.citiesChanged.next(this.cities.slice());
+    this.httpClient.post<City>('api/cities', city).subscribe(() => {
+      this.citiesChanged.next();
+    });
   }
 
-  public getCities(): City[] {
-    return this.cities.slice();
+  public getCities(): Observable<City[]> {
+    return this.httpClient.get<City[]>('api/cities');
   }
 }

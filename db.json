@@ -1,0 +1,44 @@
+{
+  "cities": [
+    {
+      "id": 1,
+      "name": "Strasbourg",
+      "country": "France"
+    },
+    {
+      "name": "Florence",
+      "country": "Italy",
+      "id": 2
+    },
+    {
+      "name": "Berlin",
+      "country": "Germany",
+      "id": 3
+    },
+    {
+      "name": "Florence",
+      "country": "Italy",
+      "id": 4
+    },
+    {
+      "name": "Vienna",
+      "country": "Austria",
+      "id": 5
+    },
+    {
+      "name": "test",
+      "country": "test",
+      "id": 6
+    },
+    {
+      "name": "test",
+      "country": "test",
+      "id": 7
+    },
+    {
+      "name": "test",
+      "country": "test",
+      "id": 8
+    }
+  ]
+}

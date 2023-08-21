@@ -18,17 +18,24 @@ export class CitiesComponent implements OnInit, OnDestroy {
   public constructor(private citiesService: CitiesService) {}
 
   public ngOnInit(): void {
-    this.cities = this.citiesService.getCities();
+    this.getCities();
 
-    this.citiesService.citiesChanged.pipe(
-      takeUntil(this.onDestroy)
-    ).subscribe((cities: City[]) => {
-      this.cities = cities;
-    });
+    this.citiesService.citiesChanged
+      .pipe(
+        takeUntil(this.onDestroy)
+      ).subscribe(() => {
+        this.getCities();
+      });
   }
 
   public ngOnDestroy(): void {
     this.onDestroy.next();
     this.onDestroy.complete();
+  }
+
+  private getCities(): void {
+    this.citiesService.getCities().subscribe((cities) => {
+      this.cities = cities;
+    });
   }
 }
