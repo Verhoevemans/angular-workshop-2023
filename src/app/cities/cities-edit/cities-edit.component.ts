@@ -10,48 +10,40 @@ import { CitiesService } from '../cities.service';
   styleUrls: ['./cities-edit.component.scss']
 })
 export class CitiesEditComponent implements OnInit {
-  public name = '';
-  public country = '';
-  public cityIndex: number | undefined;
+  public city: City | undefined;
 
   public constructor(private citiesService: CitiesService, private route: ActivatedRoute, private router: Router) {}
 
   public ngOnInit(): void {
     this.route.params.subscribe((params: Params) => {
       if (params['id']) {
-        this.cityIndex = +params['id'];
-        this.getCity(this.cityIndex);
+        this.getCity(params['id']);
+      } else {
+        this.city = new City('', '');
       }
     });
   }
 
-  public isDisabled(): boolean {
-    return !this.name || !this.country;
-  }
-
-  public addCity(): void {
-    const city = new City(this.name, this.country);
+  public addCity(city: City): void {
     this.citiesService.addCity(city);
-    this.name = '';
-    this.country = '';
+    this.router.navigate(['cities']);
   }
 
   public deleteCity(): void {
-    this.citiesService.deleteCity(this.cityIndex!).subscribe(() => {
+    this.citiesService.deleteCity(this.city!.id!).subscribe(() => {
       this.router.navigate(['cities']);
     });
   }
 
-  public updateCity(): void {
-    this.citiesService.updateCity(this.cityIndex!, new City(this.name, this.country)).subscribe(() => {
+  public updateCity(city: City): void {
+    this.citiesService.updateCity(city).subscribe(() => {
       this.router.navigate(['cities']);
     });
   }
 
   private getCity(id: number): void {
     this.citiesService.getCity(id).subscribe((city) => {
-      this.name = city.name;
-      this.country = city.country;
+      this.city = city;
     });
   }
 }

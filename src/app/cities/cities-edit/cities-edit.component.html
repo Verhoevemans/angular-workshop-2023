@@ -1,40 +1,15 @@
-<h4>{{ cityIndex === undefined ? 'Add new' : 'Edit' }} cities</h4>
-<div class="row py-2">
-  <div class="col">
-    <label for="name">City name:</label>
-  </div>
-  <div class="col">
-    <input type="text" class="form-control" id="name" [(ngModel)]="name">
-  </div>
-</div>
-<div class="row py-2">
-  <div class="col">
-    <label for="country">City country:</label>
-  </div>
-  <div class="col">
-    <input type="text" class="form-control" id="country" [(ngModel)]="country">
-    <button type="button"
-            class="btn btn-primary"
-            (click)="addCity()"
-            [disabled]="isDisabled()"
-            *ngIf="cityIndex === undefined">
-      Add City
-    </button>
-    <button type="button"
-            class="btn btn-primary"
-            (click)="updateCity()"
-            [disabled]="isDisabled()"
-            *ngIf="cityIndex !== undefined">
-      Update City
-    </button>
+<h4>{{ city && city.id ? 'Edit' : 'Add new' }} cities</h4>
+<app-cities-edit-form [city]="city"
+                      (onAddCity)="addCity($event)"
+                      (onUpdateCity)="updateCity($event)">
+</app-cities-edit-form>
+<div class="row py-2 justify-content-end">
+  <div class="col-6 d-grid">
     <button type="button"
             class="btn btn-outline-primary"
             (click)="deleteCity()"
-            [disabled]="isDisabled()"
-            *ngIf="cityIndex !== undefined">
+            *ngIf="city?.id">
       Delete City
     </button>
   </div>
 </div>
-<p>City name: {{ name }}</p>
-<p>City country: {{ country }}</p>

@@ -1,0 +1,48 @@
+<form *ngIf="city" #form="ngForm" (ngSubmit)="form.valid && onSubmit()">
+    <div class="row py-2">
+        <div class="col">
+            <label for="name">City name:</label>
+        </div>
+        <div class="col">
+            <input type="text"
+                   class="form-control"
+                   id="name"
+                   [(ngModel)]="city.name"
+                   required
+                   #name="ngModel"
+                   name="name">
+            <span *ngIf="name.touched && name.invalid">
+                <i>Please enter a valid name</i>
+            </span>
+        </div>
+    </div>
+    <div class="row py-2">
+        <div class="col">
+            <label for="country">City country:</label>
+        </div>
+        <div class="col">
+            <input type="text"
+                   class="form-control"
+                   id="country"
+                   [(ngModel)]="city.country"
+                   name="country"
+                   #country="ngModel"
+                   required
+                   minlength="2">
+            <span *ngIf="country.touched && country.errors?.['required']">
+                <i>Please enter a valid country</i>
+            </span>
+            <span *ngIf="country.touched && country.errors?.['minlength']">
+                <i>Country value must be at least 2 characters</i>
+            </span>
+        </div>
+    </div>
+    <div class="row py-2 justify-content-end">
+        <div class="col-6 d-grid">
+            <button type="submit"
+                    class="btn btn-primary">
+                {{ city && city.id ? 'Update' : 'Add' }} City
+            </button>
+        </div>
+    </div>
+</form>

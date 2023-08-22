@@ -24,8 +24,8 @@ export class CitiesService {
     return this.httpClient.get<City>(`api/cities/${id}`);
   }
 
-  public updateCity(id: number, city: City): Observable<City> {
-    return this.httpClient.put<City>(`api/cities/${id}`, city)
+  public updateCity(city: City): Observable<City> {
+    return this.httpClient.put<City>(`api/cities/${city.id}`, city)
       .pipe(
         tap(() => this.citiesChanged.next())
       );
