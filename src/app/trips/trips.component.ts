@@ -15,16 +15,16 @@ export class TripsComponent {
     {
       title: 'Summer 2023',
       cities: [
-        new City('Florence', 'Italy'),
-        new City('Vienna', 'Austria')
+        new City('Florence', 'Italy', 'IT'),
+        new City('Vienna', 'Austria', 'AU')
       ]
     },
     {
       title: 'Spring 2022',
       cities: [
-        new City('Barcelona', 'Spain'),
-        new City('Madrid', 'Spain'),
-        new City('Valencia', 'Spain')
+        new City('Barcelona', 'Spain', 'ES'),
+        new City('Madrid', 'Spain', 'ES'),
+        new City('Valencia', 'Spain', 'ES')
       ]
     }
   ];

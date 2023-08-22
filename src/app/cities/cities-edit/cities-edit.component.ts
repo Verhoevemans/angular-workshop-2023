@@ -19,7 +19,7 @@ export class CitiesEditComponent implements OnInit {
       if (params['id']) {
         this.getCity(params['id']);
       } else {
-        this.city = new City('', '');
+        this.city = new City('', '', '');
       }
     });
   }

@@ -3,6 +3,7 @@ import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 
 import { CityForm } from '../../../shared/models/city.form.model';
 import { City } from '../../../shared/models/city.model';
+import { CountryCodeValidator } from './validators/country-code.validator';
 
 @Component({
   selector: 'app-cities-edit-form',
@@ -29,6 +30,10 @@ export class CitiesEditFormComponent implements OnChanges {
     return this.cityForm.get('country') as FormControl;
   }
 
+  public get countryCodeControl(): FormControl {
+    return this.cityForm.get('countryCode') as FormControl;
+  }
+
   public get yearsVisited(): FormArray {
     return this.cityForm.get('yearsVisited') as FormArray;
   }
@@ -36,6 +41,8 @@ export class CitiesEditFormComponent implements OnChanges {
   public get yearsVisitedControls(): FormControl[] {
     return (<FormArray<FormControl>>this.cityForm.get('yearsVisited')).controls;
   }
+
+  public constructor(private countryCodeValidator: CountryCodeValidator) {}
 
   public ngOnChanges(changes: SimpleChanges): void {
     this.initForm();
@@ -69,7 +76,10 @@ export class CitiesEditFormComponent implements OnChanges {
     this.cityForm = new FormGroup<CityForm>({
       name: new FormControl('', Validators.required),
       country: new FormControl('', [Validators.required, Validators.minLength(2)]),
+      countryCode: new FormControl('', [Validators.required, Validators.minLength(2)]),
       yearsVisited: new FormArray([new FormControl()])
+    }, {
+      asyncValidators: this.countryCodeValidator.validate.bind(this.countryCodeValidator)
     });
   }
 
@@ -83,6 +93,7 @@ export class CitiesEditFormComponent implements OnChanges {
     this.cityForm.patchValue({
       name: city.name,
       country: city.country,
+      countryCode: city.countryCode,
       yearsVisited: city.yearsVisited
     });
   }
@@ -90,12 +101,14 @@ export class CitiesEditFormComponent implements OnChanges {
   private markFormAsTouched(): void {
     this.nameControl.markAsTouched();
     this.countryControl.markAsTouched();
+    this.countryCodeControl.markAsTouched();
   }
 
   private getCityFromForm(): City {
     return new City(
         this.cityForm.value.name,
         this.cityForm.value.country,
+        this.cityForm.value.countryCode,
         this.cityForm.value.yearsVisited.filter(Number),
         this.city?.id
     );

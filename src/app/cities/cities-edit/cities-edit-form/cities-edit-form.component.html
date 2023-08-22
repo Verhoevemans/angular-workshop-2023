@@ -30,6 +30,23 @@
             </span>
         </div>
     </div>
+    <div class="row py-2">
+        <div class="col">
+            <label for="countryCode">Country code:</label>
+        </div>
+        <div class="col">
+            <input type="text" class="form-control" id="countryCode" [formControlName]="'countryCode'">
+            <span *ngIf="countryCodeControl.touched && countryCodeControl.errors?.['required']">
+                <i>Please enter a valid code</i>
+            </span>
+            <span *ngIf="countryCodeControl.touched && countryCodeControl.errors?.['minlength']">
+                <i>Country code must be more than 1 characters</i>
+            </span>
+            <span *ngIf="countryCodeControl.touched && cityForm.errors?.['countryCode']">
+                <i>Code does not match country</i>
+            </span>
+        </div>
+    </div>
     <div class="row">
         <div class="col py-2">
             <label for="yearsVisited">Years visited:</label>
@@ -56,6 +73,7 @@
     <div class="row py-2 justify-content-end">
         <div class="col-6 d-grid">
             <button type="submit"
+                    [disabled]="cityForm.pending"
                     class="btn btn-primary">
                 {{ city && city.id ? 'Update' : 'Add' }} City
             </button>
