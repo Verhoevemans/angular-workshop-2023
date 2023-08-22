@@ -1,3 +1,6 @@
 export class City {
-  constructor(public name: string, public country: string, public id?: number) {}
+  constructor(public name: string,
+              public country: string,
+              public yearsVisited?: number[],
+              public id?: number) {}
 }
