@@ -12,6 +12,7 @@ import { CitiesService } from './cities.service';
 })
 export class CitiesComponent implements OnInit, OnDestroy {
   public cities: City[] | undefined;
+
   private onDestroy = new Subject<void>();
 
   public constructor(private citiesService: CitiesService) {}
@@ -29,6 +30,7 @@ export class CitiesComponent implements OnInit, OnDestroy {
 
   public ngOnDestroy(): void {
     this.onDestroy.next();
+    this.onDestroy.complete();
   }
 
   private getCities(): void {

@@ -1,4 +1,4 @@
-<h4>{{ cityIndex === null ? 'Add new' : 'Edit' }} cities</h4>
+<h4>{{ cityIndex === undefined ? 'Add new' : 'Edit' }} cities</h4>
 <div class="row py-2">
   <div class="col">
     <label for="name">City name:</label>
@@ -17,21 +17,21 @@
             class="btn btn-primary"
             (click)="addCity()"
             [disabled]="isDisabled()"
-            *ngIf="!cityIndex">
+            *ngIf="cityIndex === undefined">
       Add City
     </button>
     <button type="button"
             class="btn btn-primary"
             (click)="updateCity()"
             [disabled]="isDisabled()"
-            *ngIf="cityIndex">
+            *ngIf="cityIndex !== undefined">
       Update City
     </button>
     <button type="button"
             class="btn btn-outline-primary"
             (click)="deleteCity()"
             [disabled]="isDisabled()"
-            *ngIf="cityIndex">
+            *ngIf="cityIndex !== undefined">
       Delete City
     </button>
   </div>

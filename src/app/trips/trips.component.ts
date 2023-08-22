@@ -18,6 +18,14 @@ export class TripsComponent {
         new City('Florence', 'Italy'),
         new City('Vienna', 'Austria')
       ]
+    },
+    {
+      title: 'Spring 2022',
+      cities: [
+        new City('Barcelona', 'Spain'),
+        new City('Madrid', 'Spain'),
+        new City('Valencia', 'Spain')
+      ]
     }
   ];
 

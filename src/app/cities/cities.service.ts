@@ -10,18 +10,18 @@ export class CitiesService {
 
   public constructor(private httpClient: HttpClient) {}
 
-  public getCity(id: number): Observable<City> {
-    return this.httpClient.get<City>(`api/cities/${id}`);
+  public addCity(city: City): void {
+    this.httpClient.post<City>('api/cities', city).subscribe(() => {
+      this.citiesChanged.next();
+    });
   }
 
   public getCities(): Observable<City[]> {
     return this.httpClient.get<City[]>('api/cities');
   }
 
-  public addCity(city: City): void {
-    this.httpClient.post<City>('api/cities', city).subscribe(() => {
-      this.citiesChanged.next();
-    });
+  public getCity(id: number): Observable<City> {
+    return this.httpClient.get<City>(`api/cities/${id}`);
   }
 
   public updateCity(id: number, city: City): Observable<City> {

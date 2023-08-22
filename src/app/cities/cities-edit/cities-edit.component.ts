@@ -20,7 +20,7 @@ export class CitiesEditComponent implements OnInit {
     this.route.params.subscribe((params: Params) => {
       if (params['id']) {
         this.cityIndex = +params['id'];
-        this.setCity(this.cityIndex);
+        this.getCity(this.cityIndex);
       }
     });
   }
@@ -48,7 +48,7 @@ export class CitiesEditComponent implements OnInit {
     });
   }
 
-  private setCity(id: number): void {
+  private getCity(id: number): void {
     this.citiesService.getCity(id).subscribe((city) => {
       this.name = city.name;
       this.country = city.country;
