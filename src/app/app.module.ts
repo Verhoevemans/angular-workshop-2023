@@ -11,6 +11,7 @@ import { CitiesEditComponent } from './cities/cities-edit/cities-edit.component'
 import { CitiesListComponent } from './cities/cities-list/cities-list.component';
 import { HeaderComponent } from './shared/header/header.component';
 import { TripsComponent } from './trips/trips.component';
+import { CitiesEditFormComponent } from './cities/cities-edit/cities-edit-form/cities-edit-form.component';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { TripsComponent } from './trips/trips.component';
     CitiesComponent,
     CitiesListComponent,
     CitiesEditComponent,
+    CitiesEditFormComponent,
     TripsComponent
   ],
   imports: [
